@@ -8,12 +8,12 @@ import ghidra.program.model.mem.MemBuffer;
 // This allows things like searching strings in the strings table.
 public class CustomStringDataInstance extends StringDataInstance
 {
-    private BCCStringDataType dt;
+    private AbstractBnStringDataType dt;
     private Settings settings;
     private MemBuffer buf;
     private int length;
     
-    public CustomStringDataInstance(BCCStringDataType bccStringDataType, Settings settings, MemBuffer buf, int length)
+    public CustomStringDataInstance(AbstractBnStringDataType bccStringDataType, Settings settings, MemBuffer buf, int length)
     {
 	super(bccStringDataType, settings, buf, length);
 	this.dt = bccStringDataType;
