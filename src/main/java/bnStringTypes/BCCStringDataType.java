@@ -18,7 +18,7 @@ public class BCCStringDataType extends AbstractBnStringDataType
 	      "BCCSTR", // default label prefix
 	      "bccs", // default abbrev label prefix
 	      "BCC String (fixed length)", // description
-	      "data/bcc-utf8.tbl",
+	      "bcc-utf8.tbl",
 	      0x80,
 	      dtm);
     }

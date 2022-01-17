@@ -59,21 +59,11 @@ public abstract class AbstractBnStringDataType extends AbstractStringDataType
 		characterMap.put(code, character);
 		reverseCharacterMap.put(character, code);
 	    }
+	    br.close();
 	}
 	catch (IOException e)
 	{
 	    e.printStackTrace();
-	}
-	finally
-	{
-	    try
-	    {
-		br.close();
-	    }
-	    catch (IOException e)
-	    {
-		e.printStackTrace();
-	    }
 	}
     }
 
