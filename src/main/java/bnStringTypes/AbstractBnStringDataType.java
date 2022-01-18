@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 
 import generic.jar.ResourceFile;
@@ -26,6 +28,8 @@ public abstract class AbstractBnStringDataType extends AbstractStringDataType
     private HashMap<String, Integer> reverseCharacterMap = new HashMap<String, Integer>();
 
     private ArrayList<Integer> terminators = null;
+    
+    private int codeMask = 0;
     
     public AbstractBnStringDataType(String name, String mnemonic, String defaultLabel,
 		String defaultLabelPrefix, String defaultAbbrevLabelPrefix, String description,
@@ -64,6 +68,8 @@ public abstract class AbstractBnStringDataType extends AbstractStringDataType
 		reverseCharacterMap.put(character, code);
 	    }
 	    br.close();
+	    
+	    codeMask = Collections.max(characterMap.keySet()) + 1;
 	}
 	catch (IOException e)
 	{
@@ -130,10 +136,10 @@ public abstract class AbstractBnStringDataType extends AbstractStringDataType
 	    try
 	    {
 		int ib = buf.getUnsignedShort(i);
-		if (characterMap.containsKey(ib))
-		    sb.append(characterMap.get(ib));
+		if (characterMap.containsKey(ib & codeMask))
+		    sb.append(characterMap.get(ib & codeMask));
 		else
-		    sb.append("UNK:" + ib);
+		    sb.append("UNK:" + (ib & codeMask));
 	    }
 	    catch (MemoryAccessException e)
 	    {
